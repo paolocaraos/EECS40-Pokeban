@@ -3,6 +3,7 @@ package com.example.paolo.pokeban;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -43,10 +44,18 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
     }
 
     public void draw(Canvas canvas){
+        canvas.drawColor(Color.WHITE);
 
+
+        for(int i = 0; i < floor.length; i++){
+            for(int j = 0; j < floor[i].length; j++){
+                floor[i][j].draw(canvas, i, j);
+            }
+        }
     }
 
     public void update(Canvas canvas){
+
 
     }
 
