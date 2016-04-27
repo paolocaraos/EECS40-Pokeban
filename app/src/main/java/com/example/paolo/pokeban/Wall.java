@@ -1,7 +1,11 @@
 package com.example.paolo.pokeban;
 
 /**
- * Created by Paolo on 4/27/2016.
+ * Created by Paolo on 4/21/2016.
  */
-public class Wall {
+public class Wall extends GameObject{
+
+    boolean move(){
+        return false;
+    }
 }
