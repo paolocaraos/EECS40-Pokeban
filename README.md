@@ -1,4 +1,4 @@
-Pokeoban Game
+Pokeban Game
 =============
 
 EECS 40 Spring 2016 
