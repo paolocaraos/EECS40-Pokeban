@@ -55,7 +55,9 @@ public class FloorTile {
     }
 
     void setGameObject(GameObject object){
-        this.object = object;
+        if(this.object == null){
+            this.object = object;
+        }
     }
 
     void setIcon(Bitmap icon){

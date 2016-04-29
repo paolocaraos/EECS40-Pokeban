@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -36,6 +38,9 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
     private FloorTile[][] floor = new FloorTile[7][10];
     private Bitmap[] targetIcon = new Bitmap[10];
 
+    private Bitmap cursor;
+    private Rect cursorSpace;
+
     private Level level;
     private int currentLevel = 0;
 
@@ -56,6 +61,9 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         canvas.drawColor(Color.WHITE);
 
         level.draw(canvas);
+
+        cursorSpace.set(screen_width / 2 - 360, screen_height - 500, screen_width / 2 + 360, screen_height - 100);
+        canvas.drawBitmap(cursor, null, cursorSpace, null);
     }
 
     public void update(Canvas canvas){
@@ -78,6 +86,9 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         this.screen_width = getWidth();
         this.screen_height = getHeight();
 
+        cursorSpace = new Rect();
+        cursor = BitmapFactory.decodeResource(getResources(), R.mipmap._arrowkeys);
+
         for(int i = 0; i < wall.length; i++){
             wallIcon[i] = BitmapFactory.decodeResource(getResources(), R.mipmap._poketree);
             wall[i] = new Wall(wallIcon[i]);
@@ -99,10 +110,10 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         }
 
         playerIcon = BitmapFactory.decodeResource(getResources(), R.mipmap._trainer);
-        player = new Player();
+        player = new Player(playerIcon);
 
 
-        level = new Level(floor, wall, box, targetIcon);
+        level = new Level(floor, wall, box, targetIcon, player);
         level.initiate();
     }
 
@@ -113,7 +124,30 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
 
     @Override
     public boolean onTouchEvent(MotionEvent e){
-        return false;
+        float touchX = e.getX();
+        float touchY = e.getY();
+
+        System.out.println("touch x = " + touchX);
+
+        if(touchX < screen_width/2 + 120 & touchX > screen_width - 120 &
+                touchY > screen_height - 500 & touchY < screen_height - 300){
+            //player goes up
+            Log.d("Log.DEBUG", "Command Up");
+        }else if(touchX < screen_width/2 - 120 & touchX > screen_width - 360 &
+                touchY > screen_height - 300 & touchY < screen_height - 100){
+            //player goes left
+            Log.d("Log.DEBUG", "Command Left");
+        }else if(touchX < screen_width/2 + 120 & touchX > screen_width - 120 &
+                touchY > screen_height - 300 & touchY < screen_height - 100) {
+            //player goes down
+            Log.d("Log.DEBUG", "Command Down");
+        }else if(touchX < screen_width/2 + 360 & touchX > screen_width + 120 &
+                touchY > screen_height - 300 & touchY < screen_height - 100) {
+            //player goes right
+            Log.d("Log.DEBUG", "Command Right");
+        }
+
+        return true;
     }
 
 }
