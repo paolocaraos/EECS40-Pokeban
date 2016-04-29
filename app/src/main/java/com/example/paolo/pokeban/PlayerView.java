@@ -36,7 +36,7 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
     private FloorTile[][] floor = new FloorTile[7][10];
     private Bitmap[][] tileIcons = new Bitmap[7][10];
 
-    private Level[] level = new Level[5];
+    private Level level = new Level;
     private int currentLevel = 0;
 
     Canvas canvas;
@@ -55,7 +55,7 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
     public void draw(Canvas canvas){
         canvas.drawColor(Color.WHITE);
 
-        level[currentLevel].draw(canvas);
+        level.draw(canvas);
     }
 
     public void update(Canvas canvas){
@@ -78,8 +78,6 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         this.screen_width = getWidth();
         this.screen_height = getHeight();
 
-        level = new
-
         for(int i = 0; i < wall.length; i++){
             wallIcon[i] = BitmapFactory.decodeResource(getResources(), R.mipmap.poketree);
             wall[i] = new Wall(wallIcon[i]);
@@ -99,7 +97,7 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         playerIcon = BitmapFactory.decodeResource(getResources(), R.mipmap.Poketrainer);
         player = new Player();
 
-
+        level = new Level(floor, wall, box);
     }
 
     @Override

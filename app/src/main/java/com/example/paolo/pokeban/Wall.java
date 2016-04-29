@@ -15,7 +15,7 @@ public class Wall extends GameObject{
     }
 
     void draw(Canvas canvas, int x, int y, int sideLength){
-        objectSpace.set(x - sideLength/2, y - sideLength/2, x + sideLength/2, y+ sideLength/2)
+        objectSpace.set(x - sideLength/2, y - sideLength/2, x + sideLength/2, y+ sideLength/2);
         canvas.drawBitmap(icon, null, objectSpace, null);
     }
 
