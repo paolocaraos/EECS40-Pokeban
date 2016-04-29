@@ -27,8 +27,7 @@ public class FloorTile {
     Bitmap icon;
     Paint paint;
 
-    FloorTile(Bitmap tileIcon, int screen_x, int screen_y, int x_offset, int y_offset){
-        this.icon = tileIcon;
+    FloorTile(int screen_x, int screen_y, int x_offset, int y_offset){
 
         x = screen_x/2 - sideLength*3 + sideLength*x_offset;
         y = sideLength/2 + y_offset*sideLength;
@@ -47,10 +46,20 @@ public class FloorTile {
         canvas.drawRect(tileSpace, paint);
         if(object != null)
             object.draw(canvas, x, y, sideLength);
+        if(targetTile)
+            canvas.drawBitmap(icon, null, tileSpace, null);
     }
 
     GameObject getGameObject(){
-
         return object;
+    }
+
+    void setGameObject(GameObject object){
+        this.object = object;
+    }
+
+    void setIcon(Bitmap icon){
+        this.targetTile = true;
+        this.icon = icon;
     }
 }

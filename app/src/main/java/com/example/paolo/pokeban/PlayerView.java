@@ -34,7 +34,7 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
     private Bitmap[] boxIcon = new Bitmap[10];
 
     private FloorTile[][] floor = new FloorTile[7][10];
-    private Bitmap[][] tileIcons = new Bitmap[7][10];
+    private Bitmap[] targetIcon = new Bitmap[10];
 
     private Level level;
     private int currentLevel = 0;
@@ -88,16 +88,22 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
             box[i] = new Box(boxIcon[i]);
         }
 
+        for(int i = 0; i < targetIcon.length; i++){
+            targetIcon[i] = BitmapFactory.decodeResource(getResources(), R.mipmap._charizard);
+        }
+
         for(int i = 0; i < floor.length; i++){
             for(int j = 0; j < floor[i].length; j++){
-                floor[i][j] = new FloorTile(tileIcons[i][j], screen_width, screen_height, i , j);
+                floor[i][j] = new FloorTile(screen_width, screen_height, i , j);
             }
         }
 
         playerIcon = BitmapFactory.decodeResource(getResources(), R.mipmap._trainer);
         player = new Player();
 
-        level = new Level(floor, wall, box);
+
+        level = new Level(floor, wall, box, targetIcon);
+        level.initiate();
     }
 
     @Override
