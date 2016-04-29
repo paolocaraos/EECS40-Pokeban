@@ -12,10 +12,9 @@ import android.graphics.Rect;
 public class FloorTile {
 
     GameObject object;
+    boolean targetTile;
 
     final int sideLength = 60;
-
-    boolean targetTile;
 
     int x;
     int y;
