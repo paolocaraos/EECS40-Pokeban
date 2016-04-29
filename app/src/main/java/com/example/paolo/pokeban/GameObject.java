@@ -8,10 +8,12 @@ import android.graphics.Rect;
  */
 public abstract class GameObject{
 
-    public final int UP = 0;
-    public final int DOWN = 1;
-    public final int LEFT = 2;
-    public final int RIGHT = 3;
+    public enum DIRECTION{
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    }
 
     int sideLength;
 

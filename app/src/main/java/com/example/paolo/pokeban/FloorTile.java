@@ -20,29 +20,34 @@ public class FloorTile {
     int x;
     int y;
 
-    int screenX;
-    int screenY;
+    static int screenX;
+    static int screenY;
 
     Rect tileSpace;
 
     Bitmap icon;
     Paint paint;
 
-    FloorTile(int screen_x, int screen_y){
+    FloorTile(Bitmap tileIcon, int screen_x, int screen_y, int x_offset, int y_offset){
+        this.icon = tileIcon;
+
+        x = x_offset;
+        y = y_offset;
+
         screenX = screen_x;
         screenY = screen_y;
 
         tileSpace = new Rect();
-    }
-
-    void draw(Canvas canvas, int x, int y){
         paint = new Paint();
         paint.setColor(Color.BLACK);
+    }
 
+    void draw(Canvas canvas){
 
     }
 
     GameObject getGameObject(){
+
         return object;
     }
 }

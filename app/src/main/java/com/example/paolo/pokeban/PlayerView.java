@@ -2,6 +2,7 @@ package com.example.paolo.pokeban;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.view.MotionEvent;
@@ -26,12 +27,21 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
     private Player player;
     private Bitmap playerIcon;
 
+    private Wall[] wall = new Wall[50];
     private Bitmap[] wallIcon = new Bitmap[50];
 
+    private Box[] box = new Box[10];
+    private Bitmap[] boxIcon = new Bitmap[10];
+
     private FloorTile[][] floor = new FloorTile[7][10];
+    private Bitmap[][] tileIcons = new Bitmap[7][10];
+
+    private Level[] level = new Level[5];
+    private int currentLevel = 0;
 
     Canvas canvas;
     private Bitmap canvasBG;
+
 
     public PlayerView(Context context){
         super(context);
@@ -39,19 +49,13 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         getHolder().addCallback(this);
         setFocusable(true);
 
-
         canvas = new Canvas();
     }
 
     public void draw(Canvas canvas){
         canvas.drawColor(Color.WHITE);
 
-
-        for(int i = 0; i < floor.length; i++){
-            for(int j = 0; j < floor[i].length; j++){
-                floor[i][j].draw(canvas, i, j);
-            }
-        }
+        level[currentLevel].draw(canvas);
     }
 
     public void update(Canvas canvas){
@@ -70,6 +74,33 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
 
         gt = new GameThread(this);
         gt.start();
+
+        this.screen_width = getWidth();
+        this.screen_height = getHeight();
+
+        level = new
+
+        for(int i = 0; i < wall.length; i++){
+            wallIcon[i] = BitmapFactory.decodeResource(getResources(), null);
+            wall[i] = new Wall(wallIcon[i]);
+        }
+
+        for(int i = 0; i < box.length; i++){
+            boxIcon[i] = BitmapFactory.decodeResource(getResources(), null);
+            box[i] = new Box(boxIcon[i]);
+        }
+
+        for(int i = 0; i < floor.length; i++){
+            for(int j = 0; j < floor[i].length; j++){
+                tileIcons[i][j] = BitmapFactory.decodeResource(getResources(), null);
+                floor[i][j] = new FloorTile(tileIcons[i][j], screen_width, screen_height, i , j);
+            }
+        }
+
+        playerIcon = BitmapFactory.decodeResource(getResources(), null);
+        player = new Player();
+
+
     }
 
     @Override
