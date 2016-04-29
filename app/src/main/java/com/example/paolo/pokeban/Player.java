@@ -19,7 +19,7 @@ public class Player extends GameObject{
         canvas.drawBitmap(icon, null, objectSpace, null);
     }
 
-    boolean move(){
-        return false;
+    PlayerView.Direction move(PlayerView.Direction direction){
+        return direction;
     }
 }

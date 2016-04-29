@@ -48,7 +48,6 @@ public class Level {
                     floor[i][j].setGameObject(wall[wallCounter++]);
                 }
 
-
                 if ((i == 1 & j == 1) | (i == floor.length - 2 & j == 1) |
                         (i == 1 & j == floor[i].length - 2) | (i == floor.length - 2 & j == floor[i].length - 2)) {
                     floor[i][j].setIcon(targetIcon[iconCounter++]);
@@ -60,6 +59,9 @@ public class Level {
                 }
             }
         }
+    }
+
+    void update(){
 
     }
 }

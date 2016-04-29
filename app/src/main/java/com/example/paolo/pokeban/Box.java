@@ -23,6 +23,10 @@ public class Box extends GameObject{
         return false;
     }
 
+    PlayerView.Direction move(PlayerView.Direction direction){
+        return PlayerView.Direction.STAY;
+    }
+
     boolean checkAdjacent(){
         return false;
     }

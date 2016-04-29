@@ -9,13 +9,6 @@ import android.graphics.Rect;
  */
 public abstract class GameObject{
 
-    public enum DIRECTION{
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
-    }
-
     int sideLength;
 
     int x;
@@ -25,5 +18,5 @@ public abstract class GameObject{
     Bitmap icon;
 
     abstract void draw(Canvas canvas, int x, int y, int sideLength);
-    abstract boolean move();
+    abstract PlayerView.Direction move(PlayerView.Direction direction);
 }

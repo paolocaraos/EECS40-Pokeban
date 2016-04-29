@@ -19,7 +19,7 @@ public class Wall extends GameObject{
         canvas.drawBitmap(icon, null, objectSpace, null);
     }
 
-    boolean move(){
-        return false;
+    PlayerView.Direction move(PlayerView.Direction direction){
+        return PlayerView.Direction.STAY;
     }
 }
