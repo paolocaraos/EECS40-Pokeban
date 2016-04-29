@@ -1,26 +1,30 @@
 package com.example.paolo.pokeban;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 
 /**
  * Created by Paolo on 4/21/2016.
  */
 public class Box extends GameObject{
 
-    public Box(Bitmap boxIcon){
+    Box(Bitmap boxIcon){
         this.icon = boxIcon;
     }
-
-    public boolean move(){
-
+    void draw(Canvas canvas, int x, int y, int sideLength){
+        objectSpace.set(x - sideLength/2, y - sideLength/2, x + sideLength/2, y + sideLength/2);
+        canvas.drawBitmap(icon,null,objectSpace,null);
+    }
+    boolean move(){
+        return false;
     }
 
-    public boolean checkAdjacent(){
-
+    boolean checkAdjacent(){
+        return false;
     }
 
-    public boolean checkTarget(){
-
+    boolean checkTarget(){
+        return false;
     }
 
 
