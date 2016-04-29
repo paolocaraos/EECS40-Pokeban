@@ -42,7 +42,9 @@ public class FloorTile {
     }
 
     void draw(Canvas canvas){
-
+        tileSpace.set(x - sideLength/2, y - sideLength/2, x + sideLength/2, y+ sideLength/2);
+        canvas.drawRect(tileSpace, paint);
+        object.draw(canvas, x, y, sideLength);
     }
 
     GameObject getGameObject(){

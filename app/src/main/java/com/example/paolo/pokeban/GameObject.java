@@ -1,6 +1,7 @@
 package com.example.paolo.pokeban;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 
 /**
@@ -23,5 +24,6 @@ public abstract class GameObject{
     Rect objectSpace;
     Bitmap icon;
 
+    abstract void draw(Canvas canvas, int x, int y, int sideLength);
     abstract boolean move();
 }

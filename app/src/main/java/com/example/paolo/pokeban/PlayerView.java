@@ -81,23 +81,22 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         level = new
 
         for(int i = 0; i < wall.length; i++){
-            wallIcon[i] = BitmapFactory.decodeResource(getResources(), null);
+            wallIcon[i] = BitmapFactory.decodeResource(getResources(), R.mipmap.poketree);
             wall[i] = new Wall(wallIcon[i]);
         }
 
         for(int i = 0; i < box.length; i++){
-            boxIcon[i] = BitmapFactory.decodeResource(getResources(), null);
+            boxIcon[i] = BitmapFactory.decodeResource(getResources(), R.mipmap.Pokeball);
             box[i] = new Box(boxIcon[i]);
         }
 
         for(int i = 0; i < floor.length; i++){
             for(int j = 0; j < floor[i].length; j++){
-                tileIcons[i][j] = BitmapFactory.decodeResource(getResources(), null);
                 floor[i][j] = new FloorTile(tileIcons[i][j], screen_width, screen_height, i , j);
             }
         }
 
-        playerIcon = BitmapFactory.decodeResource(getResources(), null);
+        playerIcon = BitmapFactory.decodeResource(getResources(), R.mipmap.Poketrainer);
         player = new Player();
 
 
