@@ -29,6 +29,8 @@ public class Box extends GameObject{
 
     void deactivate(){
         isActive = false;
+        tileX = 0;
+        tileY = 0;
 
         tile.removeGameObject();
 
@@ -39,8 +41,74 @@ public class Box extends GameObject{
         return tile;
     }
 
-    void setTile(FloorTile floorTile){
+    int getTileX(){
+        return tileX;
+    }
+
+    int getTileY(){
+        return tileY;
+    }
+
+    void setTile(FloorTile floorTile, int x, int y){
         tile = floorTile;
         isActive = true;
+
+        tileY = y;
+        tileX = x;
+    }
+
+    void updateMobility(FloorTile[][] floor){
+        GameObject objectAbove = floor[tileX][tileY + 1].getGameObject();
+        GameObject objectBelow = floor[tileX][tileY - 1].getGameObject();
+        GameObject objectRight = floor[tileX + 1][tileY].getGameObject();
+        GameObject objectLeft = floor[tileX + 1][tileY].getGameObject();
+
+
+        if(objectLeft == null){
+            moveableLEFT = true;
+        }else{
+            moveableLEFT = false;
+        }
+
+
+        if(objectRight == null){
+            moveableRIGHT = true;
+        }else{
+            moveableRIGHT = false;
+        }
+
+        if(objectBelow == null){
+            moveableDOWN = true;
+        }else{
+            moveableDOWN = false;
+        }
+
+        if(objectAbove == null){
+            moveableUP = true;
+        }else{
+            moveableUP = false;
+        }
+    }
+
+    boolean checkMobility(PlayerView.Direction direction){
+
+        if(direction == PlayerView.Direction.UP){
+            return moveableUP;
+        }else if(direction == PlayerView.Direction.DOWN){
+            return moveableDOWN;
+        } else if(direction == PlayerView.Direction.LEFT){
+            return moveableLEFT;
+        }else if(direction == PlayerView.Direction.RIGHT){
+            return moveableRIGHT;
+        }
+
+        return false;
+    }
+
+    void detachFromTile(){
+        tile = null;
+
+        tileX = 0;
+        tileY = 0;
     }
 }

@@ -23,8 +23,11 @@ public class Player extends GameObject{
         return tile;
     }
 
-    void setTile(FloorTile floorTile) {
+    void setTile(FloorTile floorTile, int x, int y) {
         tile = floorTile;
+
+        tileX = x;
+        tileY = y;
     }
 
     boolean verifyActive(){
@@ -41,5 +44,68 @@ public class Player extends GameObject{
 
     PlayerView.Direction move(PlayerView.Direction direction){
         return direction;
+    }
+
+    int getTileX(){
+        return tileX;
+    }
+
+    int getTileY(){
+        return tileY;
+    }
+
+    void updateMobility(FloorTile[][] floor){
+        GameObject objectAbove = floor[tileX][tileY + 1].getGameObject();
+        GameObject objectBelow = floor[tileX][tileY - 1].getGameObject();
+        GameObject objectRight = floor[tileX + 1][tileY].getGameObject();
+        GameObject objectLeft = floor[tileX + 1][tileY].getGameObject();
+
+
+        if(objectLeft == null | objectLeft.moveableLEFT){
+            moveableLEFT = true;
+        }else{
+            moveableLEFT = false;
+        }
+
+
+        if(objectRight == null | objectRight.moveableRIGHT){
+            moveableRIGHT = true;
+        }else{
+            moveableRIGHT = false;
+        }
+
+        if(objectBelow == null | objectBelow.moveableDOWN){
+            moveableDOWN = true;
+        }else{
+            moveableDOWN = false;
+        }
+
+        if(objectAbove == null | objectAbove.moveableUP){
+            moveableUP = true;
+        }else{
+            moveableUP = false;
+        }
+    }
+
+    boolean checkMobility(PlayerView.Direction direction){
+
+       if(direction == PlayerView.Direction.UP){
+           return moveableUP;
+       }else if(direction == PlayerView.Direction.DOWN){
+           return moveableDOWN;
+       } else if(direction == PlayerView.Direction.LEFT){
+           return moveableLEFT;
+       }else if(direction == PlayerView.Direction.RIGHT){
+           return moveableRIGHT;
+       }
+
+        return false;
+    }
+
+    void detachFromTile(){
+        tile = null;
+
+        tileX = 0;
+        tileY = 0;
     }
 }

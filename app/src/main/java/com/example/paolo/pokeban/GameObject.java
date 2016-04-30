@@ -10,6 +10,14 @@ import android.graphics.Rect;
 public abstract class GameObject{
     FloorTile tile;
 
+    boolean moveableUP;
+    boolean moveableDOWN;
+    boolean moveableLEFT;
+    boolean moveableRIGHT;
+
+    int tileX;
+    int tileY;
+
     Rect objectSpace;
     Bitmap icon;
 
@@ -25,6 +33,15 @@ public abstract class GameObject{
 
     abstract boolean verifyActive();
 
-    abstract void setTile(FloorTile floorTile);
+    abstract void setTile(FloorTile floorTile, int x, int y);
 
+    abstract void detachFromTile();
+
+    abstract int getTileX();
+
+    abstract int getTileY();
+
+    abstract void updateMobility(FloorTile[][] floor);
+
+    abstract boolean checkMobility(PlayerView.Direction direction);
 }

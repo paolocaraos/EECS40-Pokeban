@@ -60,17 +60,18 @@ public class FloorTile {
         return object;
     }
 
-    void setGameObject(GameObject object){
+    void setGameObject(GameObject object, int x, int y){
         if(this.object == null){
             this.object = object;
         }
         if(object.getTile() == null){
-            object.setTile(this);
+            object.setTile(this, x, y);
         }
     }
 
     GameObject removeGameObject(){
         GameObject temp = object;
+        object.detachFromTile();
         object = null;
 
         return temp;

@@ -41,7 +41,7 @@ public class Level {
         int boxCounter = 0;
         int iconCounter = 0;
 
-        floor[3][5].setGameObject(player);
+        floor[3][5].setGameObject(player, 3, 5);
 
         switch (currentLevel) {
             case 0:
@@ -49,9 +49,9 @@ public class Level {
                     for (int j = 0; j < floor[i].length; j++) {
 
                         if (i == 0 | i == floor.length - 1) {
-                            floor[i][j].setGameObject(wall[wallCounter++]);
+                            floor[i][j].setGameObject(wall[wallCounter++], i , j);
                         } else if (j == 0 | j == floor[i].length - 1) {
-                            floor[i][j].setGameObject(wall[wallCounter++]);
+                            floor[i][j].setGameObject(wall[wallCounter++], i , j);
                         }
 
                         if ((i == 1 & j == 1) | (i == floor.length - 2 & j == 1) |
@@ -61,11 +61,13 @@ public class Level {
 
                         if ((i == 4 & j == 4) | (i == floor.length - 5 & j == 4) |
                                 (i == 4 & j == floor[i].length - 5) | (i == floor.length - 5 & j == floor[i].length - 4)) {
-                            floor[i][j].setGameObject(box[boxCounter++]);
+                            floor[i][j].setGameObject(box[boxCounter++], i, j);
                         }
                     }
 
                 }
+                break;
+            case 1:
                 break;
 
             case 2:
@@ -75,9 +77,6 @@ public class Level {
                 break;
 
             case 4:
-                break;
-
-            case 5:
                 break;
 
             default:
@@ -92,11 +91,16 @@ public class Level {
             initiateNextLevel = false;
         }
 
+        for(int i = 0; box[i].verifyActive(); i++){
+            box[i].updateMobility(floor);
+        }
 
         if(complete()){
             initiateNextLevel = true;
             currentLevel++;
             deactivateLevel();
+
+            //CLick to resume next level
         }
     }
 
@@ -113,6 +117,17 @@ public class Level {
     void deactivateLevel(){
         for(int i = 0; box[i].verifyActive(); i++)
             box[i].deactivate();
+    }
+
+    Player getPlayer(){
+        return player;
+    }
+
+    boolean movePlayer(PlayerView.Direction direction){
+
+        //This is called in PlayerView, after reading touch event
+
+        return false;
     }
 }
 
