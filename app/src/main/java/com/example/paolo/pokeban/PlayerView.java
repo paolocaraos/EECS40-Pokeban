@@ -62,11 +62,14 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
 
     public void draw(Canvas canvas){
         canvas.drawColor(Color.WHITE);
-
         level.draw(canvas);
 
         cursorSpace.set(screen_width / 2 - 360, screen_height - 500, screen_width / 2 + 360, screen_height - 100);
         canvas.drawBitmap(cursor, null, cursorSpace, null);
+
+
+        //Update game state
+        level.update();
     }
 
     public void update(Canvas canvas){
@@ -116,7 +119,6 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
 
 
         level = new Level(floor, wall, box, targetIcon, player);
-        level.initiate();
     }
 
     @Override

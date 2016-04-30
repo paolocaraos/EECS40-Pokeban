@@ -9,14 +9,21 @@ import android.graphics.Rect;
  */
 public abstract class GameObject{
 
-    int sideLength;
+    int tile_X;
+    int tile_Y;
 
-    int x;
-    int y;
+    FloorTile tile;
 
     Rect objectSpace;
     Bitmap icon;
 
     abstract void draw(Canvas canvas, int x, int y, int sideLength);
+
     abstract PlayerView.Direction move(PlayerView.Direction direction);
+
+    abstract FloorTile getTile();
+
+    abstract void setTile(FloorTile floorTile);
+
+    abstract void setArrayCoordinates(int x, int y);
 }

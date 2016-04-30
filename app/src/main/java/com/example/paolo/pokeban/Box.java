@@ -9,9 +9,12 @@ import android.graphics.Rect;
  */
 public class Box extends GameObject{
 
+    boolean isActive;
+
     Box(Bitmap boxIcon){
         objectSpace = new Rect();
         this.icon = boxIcon;
+        isActive = false;
     }
 
     void draw(Canvas canvas, int x, int y, int sideLength){
@@ -19,8 +22,11 @@ public class Box extends GameObject{
         canvas.drawBitmap(icon,null,objectSpace,null);
     }
 
-    boolean move(){
-        return false;
+    void setArrayCoordinates(int x, int y){
+        tile_X = x;
+        tile_Y = y;
+
+        isActive = true;
     }
 
     PlayerView.Direction move(PlayerView.Direction direction){
@@ -35,5 +41,21 @@ public class Box extends GameObject{
         return false;
     }
 
+    boolean verifyActive(){ return isActive;}
 
+    int getTile_X_coordinate(){
+        return tile_X;
+    }
+
+    int getTile_Y_coordinate(){
+        return tile_Y;
+    }
+
+    FloorTile getTile(){
+        return tile;
+    }
+
+    void setTile(FloorTile floorTile){
+        tile = floorTile;
+    }
 }

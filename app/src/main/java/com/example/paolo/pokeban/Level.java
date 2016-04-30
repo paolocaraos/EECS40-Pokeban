@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 public class Level {
 
     private int currentLevel;
+    boolean initiateNextLevel;
 
     FloorTile[][] floor;
     Wall[] wall;
@@ -22,6 +23,9 @@ public class Level {
         box = boxes;
         this.targetIcon = targetIcon;
         this.player = player;
+
+        initiateNextLevel = true;
+        currentLevel = 0;
     }
 
     void draw(Canvas canvas){
@@ -39,29 +43,74 @@ public class Level {
 
         floor[3][5].setGameObject(player);
 
-        for (int i = 0; i < floor.length; i++) {
-            for (int j = 0; j < floor[i].length; j++) {
+        switch (currentLevel) {
+            case 0:
+                for (int i = 0; i < floor.length; i++) {
+                    for (int j = 0; j < floor[i].length; j++) {
 
-                if (i == 0 | i == floor.length - 1) {
-                    floor[i][j].setGameObject(wall[wallCounter++]);
-                } else if (j == 0 | j == floor[i].length - 1) {
-                    floor[i][j].setGameObject(wall[wallCounter++]);
-                }
+                        if (i == 0 | i == floor.length - 1) {
+                            floor[i][j].setGameObject(wall[wallCounter++]);
+                        } else if (j == 0 | j == floor[i].length - 1) {
+                            floor[i][j].setGameObject(wall[wallCounter++]);
+                        }
 
-                if ((i == 1 & j == 1) | (i == floor.length - 2 & j == 1) |
-                        (i == 1 & j == floor[i].length - 2) | (i == floor.length - 2 & j == floor[i].length - 2)) {
-                    floor[i][j].setIcon(targetIcon[iconCounter++]);
-                }
+                        if ((i == 1 & j == 1) | (i == floor.length - 2 & j == 1) |
+                                (i == 1 & j == floor[i].length - 2) | (i == floor.length - 2 & j == floor[i].length - 2)) {
+                            floor[i][j].setIcon(targetIcon[iconCounter++]);
+                        }
 
-                if((i == 4 & j == 4) | (i == floor.length -5 & j == 4) |
-                        (i == 4 & j == floor[i].length - 5) | (i == floor. length - 5 & j == floor[i].length - 4)){
-                    floor[i][j].setGameObject(box[boxCounter++]);
+                        if ((i == 4 & j == 4) | (i == floor.length - 5 & j == 4) |
+                                (i == 4 & j == floor[i].length - 5) | (i == floor.length - 5 & j == floor[i].length - 4)) {
+                            floor[i][j].setGameObject(box[boxCounter++]);
+                        }
+                    }
+
                 }
-            }
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
+
+            case 4:
+                break;
+
+            case 5:
+                break;
+
+            default:
+                break;
         }
     }
 
     void update(){
+
+        if(initiateNextLevel){
+            initiate();
+            initiateNextLevel = false;
+        }
+
+
+        if(complete()){
+            initiateNextLevel = true;
+            currentLevel++;
+        }
+    }
+
+    boolean complete() {
+        boolean boxOnTarget = true;
+
+        for (int i = 0; box[i].verifyActive(); i++) {
+            boxOnTarget = boxOnTarget & box[i].getTile().verifyTargetTile();
+        }
+
+        return boxOnTarget;
+    }
+
+    void deactivateLevel(){
+        for(int i = 0; box[i].verifyActive(); i++)
 
     }
 }

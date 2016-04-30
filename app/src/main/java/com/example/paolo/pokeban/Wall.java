@@ -19,7 +19,20 @@ public class Wall extends GameObject{
         canvas.drawBitmap(icon, null, objectSpace, null);
     }
 
+    void setArrayCoordinates(int x, int y){
+        tile_X = x;
+        tile_Y = y;
+    }
+
     PlayerView.Direction move(PlayerView.Direction direction){
         return PlayerView.Direction.STAY;
+    }
+
+    FloorTile getTile(){
+        return tile;
+    }
+
+    void setTile(FloorTile floorTile){
+        tile = floorTile;
     }
 }

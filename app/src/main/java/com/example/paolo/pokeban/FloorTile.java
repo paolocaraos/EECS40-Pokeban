@@ -19,6 +19,9 @@ public class FloorTile {
     int x;
     int y;
 
+    int index_X;
+    int index_Y;
+
     static int screenX;
     static int screenY;
 
@@ -28,6 +31,9 @@ public class FloorTile {
     Paint paint;
 
     FloorTile(int screen_x, int screen_y, int x_offset, int y_offset){
+
+        index_X = x_offset;
+        index_Y = y_offset;
 
         x = screen_x/2 - sideLength*3 + sideLength*x_offset;
         y = sideLength/2 + y_offset*sideLength;
@@ -55,8 +61,12 @@ public class FloorTile {
     }
 
     void setGameObject(GameObject object){
+        object.setArrayCoordinates(index_X, index_Y);
         if(this.object == null){
             this.object = object;
+        }
+        if(object.getTile() == null){
+            object.setTile(this);
         }
     }
 
@@ -64,4 +74,9 @@ public class FloorTile {
         this.targetTile = true;
         this.icon = icon;
     }
+
+    boolean verifyTargetTile(){
+        return targetTile;
+    }
 }
+

@@ -19,6 +19,11 @@ public class Player extends GameObject{
         canvas.drawBitmap(icon, null, objectSpace, null);
     }
 
+    void setArrayCoordinates(int x, int y){
+        tile_X = x;
+        tile_Y = y;
+    }
+
     PlayerView.Direction move(PlayerView.Direction direction){
         return direction;
     }
