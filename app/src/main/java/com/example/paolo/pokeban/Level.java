@@ -96,6 +96,7 @@ public class Level {
         if(complete()){
             initiateNextLevel = true;
             currentLevel++;
+            deactivateLevel();
         }
     }
 
@@ -111,7 +112,7 @@ public class Level {
 
     void deactivateLevel(){
         for(int i = 0; box[i].verifyActive(); i++)
-
+            box[i].deactivate();
     }
 }
 

@@ -19,9 +19,24 @@ public class Player extends GameObject{
         canvas.drawBitmap(icon, null, objectSpace, null);
     }
 
-    void setArrayCoordinates(int x, int y){
-        tile_X = x;
-        tile_Y = y;
+    FloorTile getTile(){
+        return tile;
+    }
+
+    void setTile(FloorTile floorTile) {
+        tile = floorTile;
+    }
+
+    boolean verifyActive(){
+        return isActive;
+    }
+
+    void deactivate(){
+        isActive = false;
+
+        tile.removeGameObject();
+
+        tile = null;
     }
 
     PlayerView.Direction move(PlayerView.Direction direction){

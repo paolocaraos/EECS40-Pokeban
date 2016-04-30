@@ -61,13 +61,19 @@ public class FloorTile {
     }
 
     void setGameObject(GameObject object){
-        object.setArrayCoordinates(index_X, index_Y);
         if(this.object == null){
             this.object = object;
         }
         if(object.getTile() == null){
             object.setTile(this);
         }
+    }
+
+    GameObject removeGameObject(){
+        GameObject temp = object;
+        object = null;
+
+        return temp;
     }
 
     void setIcon(Bitmap icon){

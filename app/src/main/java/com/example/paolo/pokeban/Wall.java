@@ -19,10 +19,6 @@ public class Wall extends GameObject{
         canvas.drawBitmap(icon, null, objectSpace, null);
     }
 
-    void setArrayCoordinates(int x, int y){
-        tile_X = x;
-        tile_Y = y;
-    }
 
     PlayerView.Direction move(PlayerView.Direction direction){
         return PlayerView.Direction.STAY;
@@ -33,6 +29,19 @@ public class Wall extends GameObject{
     }
 
     void setTile(FloorTile floorTile){
+        isActive = true;
         tile = floorTile;
+    }
+
+    boolean verifyActive(){
+        return isActive;
+    }
+
+    void deactivate(){
+        isActive = false;
+
+        tile.removeGameObject();
+
+        tile = null;
     }
 }
