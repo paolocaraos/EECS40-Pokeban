@@ -132,27 +132,28 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         float touchY = e.getY();
 
         System.out.println("touch x = " + touchX);
+        System.out.println("touch y = " + touchY);
 
         if(touchX < screen_width/2 + 120 & touchX > screen_width/2 - 120 &
                 touchY > screen_height - 500 & touchY < screen_height - 300){
             //player goes up
-            Log.d("Log.DEBUG", "Command Up");
-            player.move(Direction.UP);
+            System.out.println( "Command Up");
+            level.movePlayer(Direction.UP);
         }else if(touchX < screen_width/2 - 120 & touchX > screen_width/2 - 360 &
                 touchY > screen_height - 300 & touchY < screen_height - 100){
             //player goes left
-            Log.d("Log.DEBUG", "Command Left");
-            player.move(Direction.LEFT);
+            System.out.println( "Command Left");
+            level.movePlayer(Direction.LEFT);
         }else if(touchX < screen_width/2 + 120 & touchX > screen_width/2 - 120 &
                 touchY > screen_height - 300 & touchY < screen_height - 100) {
             //player goes down
-            Log.d("Log.DEBUG", "Command Down");
-            player.move(Direction.DOWN);
+            System.out.println( "Command Down");
+            level.movePlayer(Direction.DOWN);
         }else if(touchX < screen_width/2 + 360 & touchX > screen_width/2 + 120 &
                 touchY > screen_height - 300 & touchY < screen_height - 100) {
             //player goes right
-            Log.d("Log.DEBUG", "Command Right");
-            player.move(Direction.RIGHT);
+            System.out.println( "Command Right");
+            level.movePlayer(Direction.RIGHT);
         }
 
         return true;

@@ -85,5 +85,9 @@ public class FloorTile {
     boolean verifyTargetTile(){
         return targetTile;
     }
+
+    void nullObjectPointer(){
+        object = null;
+    }
 }
 

@@ -20,8 +20,25 @@ public class Box extends GameObject{
         canvas.drawBitmap(icon,null,objectSpace,null);
     }
 
-    PlayerView.Direction move(PlayerView.Direction direction){
-        return PlayerView.Direction.STAY;
+    PlayerView.Direction move(PlayerView.Direction direction, FloorTile[][] floorTiles){
+        tile.nullObjectPointer();
+        switch (direction){
+            case UP:
+                floorTiles[tileX][tileY-1].setGameObject(this,tileX,tileY-1);
+                break;
+            case DOWN:
+                floorTiles[tileX][tileY+1].setGameObject(this,tileX,tileY+1);
+                break;
+            case LEFT:
+                floorTiles[tileX-1][tileY].setGameObject(this,tileX-1,tileY);
+                break;
+            case RIGHT:
+                floorTiles[tileX+1][tileY].setGameObject(this,tileX+1,tileY);
+                break;
+            default:
+                break;
+        }
+        return direction;
     }
 
 

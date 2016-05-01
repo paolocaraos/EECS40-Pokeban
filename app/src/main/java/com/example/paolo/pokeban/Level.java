@@ -124,7 +124,41 @@ public class Level {
     }
 
     boolean movePlayer(PlayerView.Direction direction){
-
+        GameObject destObject;
+        if(player.checkMobility(direction)){
+            int tilex = player.getTileX();
+            int tiley = player.getTileY();
+            switch(direction){
+                case UP:
+                    destObject = floor[tilex][tiley-1].getGameObject();
+                    break;
+                case DOWN:
+                    destObject = floor[tilex][tiley+1].getGameObject();
+                    break;
+                case LEFT:
+                    destObject = floor[tilex-1][tiley].getGameObject();
+                    break;
+                case RIGHT:
+                    destObject = floor[tilex+1][tiley].getGameObject();
+                    break;
+                default:
+                    destObject = null;
+                    break;
+            }
+            /*actually moving the player/object*/
+            if(destObject!=null){
+                if(destObject.checkMobility(direction)){
+                            /*box moves*/
+                    destObject.move(direction,floor);
+                            /*make player move*/
+                    player.move(direction,floor);
+                }
+            }
+            else{
+                        /*make player move*/
+                player.move(direction,floor);
+            }
+        }
         //This is called in PlayerView, after reading touch event
 
         return false;

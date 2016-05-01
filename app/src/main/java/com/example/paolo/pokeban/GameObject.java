@@ -25,7 +25,7 @@ public abstract class GameObject{
 
     abstract void draw(Canvas canvas, int x, int y, int sideLength);
 
-    abstract PlayerView.Direction move(PlayerView.Direction direction);
+    abstract PlayerView.Direction move(PlayerView.Direction direction, FloorTile[][] floorTiles);
 
     abstract FloorTile getTile();
 

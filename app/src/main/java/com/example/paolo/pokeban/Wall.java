@@ -25,7 +25,7 @@ public class Wall extends GameObject{
     }
 
 
-    PlayerView.Direction move(PlayerView.Direction direction){
+    PlayerView.Direction move(PlayerView.Direction direction, FloorTile[][] floorTiles){
         return PlayerView.Direction.STAY;
     }
 
@@ -68,17 +68,6 @@ public class Wall extends GameObject{
     }
 
     boolean checkMobility(PlayerView.Direction direction){
-
-        if(direction == PlayerView.Direction.UP){
-            return moveableUP;
-        }else if(direction == PlayerView.Direction.DOWN){
-            return moveableDOWN;
-        } else if(direction == PlayerView.Direction.LEFT){
-            return moveableLEFT;
-        }else if(direction == PlayerView.Direction.RIGHT){
-            return moveableRIGHT;
-        }
-
         return false;
     }
 

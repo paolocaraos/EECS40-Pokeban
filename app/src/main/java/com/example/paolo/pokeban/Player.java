@@ -42,7 +42,23 @@ public class Player extends GameObject{
         tile = null;
     }
 
-    PlayerView.Direction move(PlayerView.Direction direction){
+    PlayerView.Direction move(PlayerView.Direction direction, FloorTile[][] floorTiles){
+        tile.nullObjectPointer();
+        switch (direction){
+            case UP:
+                floorTiles[tileX][tileY-1].setGameObject(this,tileX,tileY-1);
+            case DOWN:
+                floorTiles[tileX][tileY+1].setGameObject(this,tileX,tileY+1);
+                break;
+            case LEFT:
+                floorTiles[tileX-1][tileY].setGameObject(this,tileX-1,tileY);
+                break;
+            case RIGHT:
+                floorTiles[tileX+1][tileY].setGameObject(this,tileX+1,tileY);
+                break;
+            default:
+                break;
+        }
         return direction;
     }
 
