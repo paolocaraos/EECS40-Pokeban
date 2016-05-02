@@ -63,8 +63,6 @@ public class FloorTile {
     void setGameObject(GameObject object, int x, int y){
         if(this.object == null){
             this.object = object;
-        }
-        if(object.getTile() == null){
             object.setTile(this, x, y);
         }
     }

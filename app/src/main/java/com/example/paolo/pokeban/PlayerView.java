@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -25,6 +24,8 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         LEFT,
         RIGHT
     }
+
+    private Direction command;
 
     private int screen_width;
     private int screen_height;
@@ -67,12 +68,7 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         cursorSpace.set(screen_width / 2 - 360, screen_height - 500, screen_width / 2 + 360, screen_height - 100);
         canvas.drawBitmap(cursor, null, cursorSpace, null);
 
-
         //Update game state
-        level.update();
-    }
-
-    public void update(Canvas canvas){
         level.update();
     }
 
@@ -134,27 +130,38 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         System.out.println("touch x = " + touchX);
         System.out.println("touch y = " + touchY);
 
-        if(touchX < screen_width/2 + 120 & touchX > screen_width/2 - 120 &
-                touchY > screen_height - 500 & touchY < screen_height - 300){
-            //player goes up
-            System.out.println( "Command Up");
-            level.movePlayer(Direction.UP);
-        }else if(touchX < screen_width/2 - 120 & touchX > screen_width/2 - 360 &
-                touchY > screen_height - 300 & touchY < screen_height - 100){
-            //player goes left
-            System.out.println( "Command Left");
-            level.movePlayer(Direction.LEFT);
-        }else if(touchX < screen_width/2 + 120 & touchX > screen_width/2 - 120 &
-                touchY > screen_height - 300 & touchY < screen_height - 100) {
-            //player goes down
-            System.out.println( "Command Down");
-            level.movePlayer(Direction.DOWN);
-        }else if(touchX < screen_width/2 + 360 & touchX > screen_width/2 + 120 &
-                touchY > screen_height - 300 & touchY < screen_height - 100) {
-            //player goes right
-            System.out.println( "Command Right");
-            level.movePlayer(Direction.RIGHT);
+        switch (e.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                if (touchX < screen_width / 2 + 120 & touchX > screen_width / 2 - 120 &
+                        touchY > screen_height - 500 & touchY < screen_height - 300) {
+                    //player goes up
+                    System.out.println("Command Up");
+                    command = Direction.UP;
+                } else if (touchX < screen_width / 2 - 120 & touchX > screen_width / 2 - 360 &
+                        touchY > screen_height - 300 & touchY < screen_height - 100) {
+                    //player goes left
+                    System.out.println("Command Left");
+                    command = Direction.LEFT;
+                } else if (touchX < screen_width / 2 + 120 & touchX > screen_width / 2 - 120 &
+                        touchY > screen_height - 300 & touchY < screen_height - 100) {
+                    //player goes down
+                    System.out.println("Command Down");
+                    command = Direction.DOWN;
+                } else if (touchX < screen_width / 2 + 360 & touchX > screen_width / 2 + 120 &
+                        touchY > screen_height - 300 & touchY < screen_height - 100) {
+                    //player goes right
+                    System.out.println("Command Right");
+                    command = Direction.RIGHT;
+            }
+                break;
+            case MotionEvent.ACTION_UP:
+                    level.movePlayer(command);
+                    break;
         }
+
+
+
+
 
         return true;
     }

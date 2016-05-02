@@ -80,31 +80,13 @@ public class Box extends GameObject{
         GameObject objectRight = floor[tileX + 1][tileY].getGameObject();
         GameObject objectLeft = floor[tileX + 1][tileY].getGameObject();
 
+        moveableLEFT = objectLeft == null;
 
-        if(objectLeft == null){
-            moveableLEFT = true;
-        }else{
-            moveableLEFT = false;
-        }
+        moveableRIGHT = objectRight == null;
 
+        moveableDOWN = objectBelow == null;
 
-        if(objectRight == null){
-            moveableRIGHT = true;
-        }else{
-            moveableRIGHT = false;
-        }
-
-        if(objectBelow == null){
-            moveableDOWN = true;
-        }else{
-            moveableDOWN = false;
-        }
-
-        if(objectAbove == null){
-            moveableUP = true;
-        }else{
-            moveableUP = false;
-        }
+        moveableUP = objectAbove == null;
     }
 
     boolean checkMobility(PlayerView.Direction direction){

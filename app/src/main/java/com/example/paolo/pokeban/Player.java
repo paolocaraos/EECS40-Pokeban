@@ -77,30 +77,13 @@ public class Player extends GameObject{
         GameObject objectLeft = floor[tileX + 1][tileY].getGameObject();
 
 
-        if(objectLeft == null | objectLeft.moveableLEFT){
-            moveableLEFT = true;
-        }else{
-            moveableLEFT = false;
-        }
+        moveableLEFT = objectLeft == null | objectLeft.moveableLEFT;
 
+        moveableRIGHT = objectRight == null | objectRight.moveableRIGHT;
 
-        if(objectRight == null | objectRight.moveableRIGHT){
-            moveableRIGHT = true;
-        }else{
-            moveableRIGHT = false;
-        }
+        moveableDOWN = objectBelow == null | objectBelow.moveableDOWN;
 
-        if(objectBelow == null | objectBelow.moveableDOWN){
-            moveableDOWN = true;
-        }else{
-            moveableDOWN = false;
-        }
-
-        if(objectAbove == null | objectAbove.moveableUP){
-            moveableUP = true;
-        }else{
-            moveableUP = false;
-        }
+        moveableUP = objectAbove == null | objectAbove.moveableUP;
     }
 
     boolean checkMobility(PlayerView.Direction direction){

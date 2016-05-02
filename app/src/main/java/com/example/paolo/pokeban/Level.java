@@ -29,9 +29,9 @@ public class Level {
     }
 
     void draw(Canvas canvas){
-        for(int i = 0; i < floor.length; i++){
-            for(int j = 0; j < floor[i].length; j++){
-                floor[i][j].draw(canvas);
+        for (FloorTile[] aFloor : floor) {
+            for (int j = 0; j < aFloor.length; j++) {
+                aFloor[j].draw(canvas);
             }
         }
     }
@@ -95,6 +95,8 @@ public class Level {
             box[i].updateMobility(floor);
         }
 
+        player.updateMobility(floor);
+
         if(complete()){
             initiateNextLevel = true;
             currentLevel++;
@@ -125,9 +127,11 @@ public class Level {
 
     boolean movePlayer(PlayerView.Direction direction){
         GameObject destObject;
+
         if(player.checkMobility(direction)){
             int tilex = player.getTileX();
             int tiley = player.getTileY();
+
             switch(direction){
                 case UP:
                     destObject = floor[tilex][tiley-1].getGameObject();
@@ -159,8 +163,6 @@ public class Level {
                 player.move(direction,floor);
             }
         }
-        //This is called in PlayerView, after reading touch event
-
         return false;
     }
 }
