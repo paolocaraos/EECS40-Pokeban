@@ -120,6 +120,32 @@ public class Level {
                 break;
 
             case 3:
+                floor[3][8].setGameObject(player);
+                for(int i =0; i <floor.length; i++) {
+                    for (int j = 0; j < floor[i].length; j++) {
+                        /* walls */
+                        if (i == 0 | i == floor.length - 1) {
+                            floor[i][j].setGameObject(wall[wallCounter++]);
+                        } else if (j == 0 | j == floor[i].length - 1) {
+                            floor[i][j].setGameObject(wall[wallCounter++]);
+                        } else if ((i == 1 & ((j == 1) | (j == 2) | (j == 3) | (j==8)))
+                                | (i == 2 & ((j == 1) | (j == 5) | (j == 6) | (j == 8)))
+                                | (i == 4 & j == 8)
+                                | (i == 5 & ((j == 1) | (j == 2) | (j == 3) | (j == 4) | (j==5) | (j==8)))) {
+                            floor[i][j].setGameObject(wall[wallCounter++]);
+                        }
+                        /* targets */
+                        if ((i == 2 & j == 2) | (i == 3 & j == 1) |
+                                (i == 3 & j == 2) | (i == 4 & j == 1) | (i == 4 & j == 2)) {
+                            floor[i][j].setIcon(targetIcon[iconCounter++]);
+                        }
+                        /* boxes */
+                        if ((i == 2 & j == 4) | (i == 3 & j == 3) |
+                                (i == 3 & j == 5) | (i == 4 & j == 4) | (i == 4 & j == 6)) {
+                            floor[i][j].setGameObject(box[boxCounter++]);
+                        }
+                    }
+                }
                 break;
 
             case 4:
