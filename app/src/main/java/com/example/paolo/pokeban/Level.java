@@ -68,6 +68,34 @@ public class Level {
                 }
                 break;
             case 1:
+                /* do i need to reset wall,icon, and box counters? */
+                for(int i =0; i <floor.length; i++){
+                    for (int j = 0; j< floor[i].length-3; j++){
+                        /* walls */
+                        if (i == 0 | i == floor.length - 1) {
+                            floor[i][j].setGameObject(wall[wallCounter++]);
+                        } else if (j == 0 | j == floor[i].length - 1) {
+                            floor[i][j].setGameObject(wall[wallCounter++]);
+                        } else if (i == 2 & j == 1){
+                            floor[i][j].setGameObject(wall[wallCounter++]);
+                        } else if (i == 3 & j == 5){
+                            floor[i][j].setGameObject(wall[wallCounter++]);
+                        } else if (i == 4 & j == 2) {
+                            floor[i][j].setGameObject(wall[wallCounter++]);
+                        }
+                        /* targets */
+                        if ((i == 5 & j == 1) | (i == 3 & j == 4) |
+                                (i == 4 & j == 4)) {
+                            floor[i][j].setIcon(targetIcon[iconCounter++]);
+                        }
+                        /* boxes */
+                        if ((i == 2 & j == 2) | (i == 2 & j == 3) |
+                                (i == 5 & j == 2)) {
+                            floor[i][j].setGameObject(box[boxCounter++]);
+                        }
+
+                    }
+                }
                 break;
 
             case 2:
