@@ -41,10 +41,11 @@ public class Level {
         int boxCounter = 0;
         int iconCounter = 0;
 
-        floor[3][5].setGameObject(player);
+
 
         switch (currentLevel) {
             case 0:
+                floor[3][5].setGameObject(player);
                 for (int i = 0; i < floor.length; i++) {
                     for (int j = 0; j < floor[i].length; j++) {
 
@@ -68,13 +69,13 @@ public class Level {
                 }
                 break;
             case 1:
-                /* do i need to reset wall,icon, and box counters? */
+                floor[4][1].setGameObject(player);
                 for(int i =0; i <floor.length; i++){
                     for (int j = 0; j< floor[i].length-3; j++){
                         /* walls */
                         if (i == 0 | i == floor.length - 1) {
                             floor[i][j].setGameObject(wall[wallCounter++]);
-                        } else if (j == 0 | j == floor[i].length - 1) {
+                        } else if (j == 0 | j == floor[i].length - 4) {
                             floor[i][j].setGameObject(wall[wallCounter++]);
                         } else if (i == 2 & j == 1){
                             floor[i][j].setGameObject(wall[wallCounter++]);
