@@ -31,7 +31,7 @@ The boy in the cap represents the player. The player must move all Pokeballs ove
 
 Notes
 ---------------
-If the player pushes the pokeball too fast into Charizard, the pokeball will disappear.
+If the player pushes the Pokeball too fast into Charizard, the Pokeball will disappear.
 
 
 
