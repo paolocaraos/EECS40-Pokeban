@@ -119,10 +119,8 @@ public class Level {
     void deactivateLevel(){
         for(int i = 0; box[i].verifyActive(); i++)
             box[i].deactivate();
-    }
 
-    Player getPlayer(){
-        return player;
+        player.deactivate();
     }
 
     boolean movePlayer(PlayerView.Direction direction){

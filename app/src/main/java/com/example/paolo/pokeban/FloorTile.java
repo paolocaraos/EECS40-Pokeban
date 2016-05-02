@@ -67,12 +67,10 @@ public class FloorTile {
         }
     }
 
-    GameObject removeGameObject(){
-        GameObject temp = object;
+    void removeGameObject(){
         object.detachFromTile();
         object = null;
 
-        return temp;
     }
 
     void setIcon(Bitmap icon){
