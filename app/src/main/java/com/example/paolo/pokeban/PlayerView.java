@@ -127,9 +127,6 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         float touchX = e.getX();
         float touchY = e.getY();
 
-        System.out.println("touch x = " + touchX);
-        System.out.println("touch y = " + touchY);
-
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 if (touchX < screen_width / 2 + 120 & touchX > screen_width / 2 - 120 &

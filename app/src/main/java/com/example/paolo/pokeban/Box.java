@@ -24,16 +24,16 @@ public class Box extends GameObject{
         tile.nullObjectPointer();
         switch (direction){
             case UP:
-                floorTiles[tileX][tileY-1].setGameObject(this,tileX,tileY-1);
+                floorTiles[tileX][tileY-1].setGameObject(this);
                 break;
             case DOWN:
-                floorTiles[tileX][tileY+1].setGameObject(this,tileX,tileY+1);
+                floorTiles[tileX][tileY+1].setGameObject(this);
                 break;
             case LEFT:
-                floorTiles[tileX-1][tileY].setGameObject(this,tileX-1,tileY);
+                floorTiles[tileX-1][tileY].setGameObject(this);
                 break;
             case RIGHT:
-                floorTiles[tileX+1][tileY].setGameObject(this,tileX+1,tileY);
+                floorTiles[tileX+1][tileY].setGameObject(this);
                 break;
             default:
                 break;

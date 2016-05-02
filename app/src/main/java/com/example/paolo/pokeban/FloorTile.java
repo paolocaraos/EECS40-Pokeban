@@ -60,17 +60,17 @@ public class FloorTile {
         return object;
     }
 
-    void setGameObject(GameObject object, int x, int y){
+    void setGameObject(GameObject object){
         if(this.object == null){
+            System.out.println(" Tile[" + index_X + "]["+index_Y+"]  points to this object: " + object);
             this.object = object;
-            object.setTile(this, x, y);
+            object.setTile(this, index_X, index_Y);
         }
     }
 
     void removeGameObject(){
         object.detachFromTile();
         object = null;
-
     }
 
     void setIcon(Bitmap icon){

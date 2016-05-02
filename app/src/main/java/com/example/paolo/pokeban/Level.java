@@ -41,7 +41,7 @@ public class Level {
         int boxCounter = 0;
         int iconCounter = 0;
 
-        floor[3][5].setGameObject(player, 3, 5);
+        floor[3][5].setGameObject(player);
 
         switch (currentLevel) {
             case 0:
@@ -49,9 +49,9 @@ public class Level {
                     for (int j = 0; j < floor[i].length; j++) {
 
                         if (i == 0 | i == floor.length - 1) {
-                            floor[i][j].setGameObject(wall[wallCounter++], i , j);
+                            floor[i][j].setGameObject(wall[wallCounter++]);
                         } else if (j == 0 | j == floor[i].length - 1) {
-                            floor[i][j].setGameObject(wall[wallCounter++], i , j);
+                            floor[i][j].setGameObject(wall[wallCounter++]);
                         }
 
                         if ((i == 1 & j == 1) | (i == floor.length - 2 & j == 1) |
@@ -61,7 +61,7 @@ public class Level {
 
                         if ((i == 4 & j == 4) | (i == floor.length - 5 & j == 4) |
                                 (i == 4 & j == floor[i].length - 5) | (i == floor.length - 5 & j == floor[i].length - 4)) {
-                            floor[i][j].setGameObject(box[boxCounter++], i, j);
+                            floor[i][j].setGameObject(box[boxCounter++]);
                         }
                     }
 
@@ -99,9 +99,10 @@ public class Level {
 
         if(complete()){
             initiateNextLevel = true;
-            currentLevel++;
+            //currentLevel++;
             deactivateLevel();
 
+            System.out.println("Level completed.");
             //CLick to resume next level
         }
     }

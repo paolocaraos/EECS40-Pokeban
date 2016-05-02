@@ -28,6 +28,8 @@ public class Player extends GameObject{
 
         tileX = x;
         tileY = y;
+
+        System.out.println("Player points to this tile: x = " + tileX + " y = " + tileY);
     }
 
     boolean verifyActive(){
@@ -44,21 +46,28 @@ public class Player extends GameObject{
 
     PlayerView.Direction move(PlayerView.Direction direction, FloorTile[][] floorTiles){
         tile.nullObjectPointer();
+
+        System.out.println("Player coordinates before setting x = "  + tileX + "y = " + tileY);
+
         switch (direction){
             case UP:
-                floorTiles[tileX][tileY-1].setGameObject(this,tileX,tileY-1);
+                floorTiles[tileX][tileY-1].setGameObject(this);
+                break;
             case DOWN:
-                floorTiles[tileX][tileY+1].setGameObject(this,tileX,tileY+1);
+                floorTiles[tileX][tileY+1].setGameObject(this);
                 break;
             case LEFT:
-                floorTiles[tileX-1][tileY].setGameObject(this,tileX-1,tileY);
+                floorTiles[tileX-1][tileY].setGameObject(this);
                 break;
             case RIGHT:
-                floorTiles[tileX+1][tileY].setGameObject(this,tileX+1,tileY);
+                floorTiles[tileX+1][tileY].setGameObject(this);
                 break;
             default:
                 break;
         }
+
+        System.out.println("Player coordinates after setting x = "  + tileX + " y = " + tileY);
+
         return direction;
     }
 
