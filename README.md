@@ -29,7 +29,9 @@ How-to-Play
 ---------------
 The boy in the cap represents the player. The player must move all Pokeballs over the Charizard faces in order to advance to the next level. The player can move the boy by pressing the arrows in the screen. 
 
-
+Notes
+---------------
+If the player pushes the pokeball too fast into Charizard, the pokeball will disappear.
 
 
 
