@@ -71,19 +71,19 @@ public class Player extends GameObject{
     }
 
     void updateMobility(FloorTile[][] floor){
-        GameObject objectAbove = floor[tileX][tileY + 1].getGameObject();
-        GameObject objectBelow = floor[tileX][tileY - 1].getGameObject();
+        GameObject objectAbove = floor[tileX][tileY - 1].getGameObject();
+        GameObject objectBelow = floor[tileX][tileY + 1].getGameObject();
         GameObject objectRight = floor[tileX + 1][tileY].getGameObject();
-        GameObject objectLeft = floor[tileX + 1][tileY].getGameObject();
+        GameObject objectLeft = floor[tileX - 1][tileY].getGameObject();
 
 
-        moveableLEFT = objectLeft == null | objectLeft.moveableLEFT;
+        moveableLEFT = objectLeft == null;
 
-        moveableRIGHT = objectRight == null | objectRight.moveableRIGHT;
+        moveableRIGHT = objectRight == null;
 
-        moveableDOWN = objectBelow == null | objectBelow.moveableDOWN;
+        moveableDOWN = objectBelow == null;
 
-        moveableUP = objectAbove == null | objectAbove.moveableUP;
+        moveableUP = objectAbove == null;
     }
 
     boolean checkMobility(PlayerView.Direction direction){

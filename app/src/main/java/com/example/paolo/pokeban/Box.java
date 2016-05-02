@@ -75,10 +75,10 @@ public class Box extends GameObject{
     }
 
     void updateMobility(FloorTile[][] floor){
-        GameObject objectAbove = floor[tileX][tileY + 1].getGameObject();
-        GameObject objectBelow = floor[tileX][tileY - 1].getGameObject();
+        GameObject objectAbove = floor[tileX][tileY - 1].getGameObject();
+        GameObject objectBelow = floor[tileX][tileY + 1].getGameObject();
         GameObject objectRight = floor[tileX + 1][tileY].getGameObject();
-        GameObject objectLeft = floor[tileX + 1][tileY].getGameObject();
+        GameObject objectLeft = floor[tileX - 1][tileY].getGameObject();
 
         moveableLEFT = objectLeft == null;
 
