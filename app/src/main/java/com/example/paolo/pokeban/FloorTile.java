@@ -88,6 +88,15 @@ public class FloorTile {
 
     void deactivate(){
         targetTile = false;
+        object = null;
+    }
+
+    float getScreenWidth(){
+        return screenX;
+    }
+
+    float getScreenHeight(){
+        return screenY;
     }
 }
 

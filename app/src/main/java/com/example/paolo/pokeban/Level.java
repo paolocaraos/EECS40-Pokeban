@@ -2,6 +2,8 @@ package com.example.paolo.pokeban;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 
 /**
  * Created by Paolo on 4/27/2016.
@@ -29,10 +31,21 @@ public class Level {
     }
 
     void draw(Canvas canvas){
-        for (FloorTile[] aFloor : floor) {
-            for (int j = 0; j < aFloor.length; j++) {
-                aFloor[j].draw(canvas);
+        if(currentLevel <= 3) {
+            for (FloorTile[] aFloor : floor) {
+                for (int j = 0; j < aFloor.length; j++) {
+                    aFloor[j].draw(canvas);
+                }
             }
+        }else{
+            Paint paint =new Paint();
+            paint.setColor(Color.WHITE);
+            paint.setStyle(Paint.Style.FILL);
+            canvas.drawPaint(paint);
+
+            paint.setColor(Color.BLACK);
+            paint.setTextSize(200);
+            canvas.drawText("Victory", 100, 250, paint);
         }
     }
 
@@ -148,9 +161,6 @@ public class Level {
                 }
                 break;
 
-            case 4:
-                break;
-
             default:
                 break;
         }
@@ -172,7 +182,7 @@ public class Level {
         if(complete()){
             initiateNextLevel = true;
             currentLevel++;
-            currentLevel = currentLevel % 3;
+            currentLevel = currentLevel % 4;
             deactivateLevel();
 
             System.out.println("Level completed.");
@@ -194,7 +204,7 @@ public class Level {
         for(int i = 0; box[i].verifyActive(); i++)
             box[i].deactivate();
 
-        for(int i = 0; i < wall.length; i++)
+        for(int i = 0; wall[i].verifyActive(); i++)
             wall[i].deactivate();
 
         player.deactivate();
