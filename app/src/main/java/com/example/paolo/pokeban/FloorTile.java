@@ -85,5 +85,9 @@ public class FloorTile {
     void nullObjectPointer(){
         object = null;
     }
+
+    void deactivate(){
+        targetTile = false;
+    }
 }
 

@@ -127,25 +127,27 @@ public class PlayerView extends SurfaceView implements SurfaceHolder.Callback{
         float touchX = e.getX();
         float touchY = e.getY();
 
+        System.out.println("touchX = " + touchY + " touchY = " + touchY);
+
         switch (e.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                if (touchX < screen_width / 2 + 120 & touchX > screen_width / 2 - 120 &
-                        touchY > screen_height - 500 & touchY < screen_height - 300) {
+                if ((touchX < screen_width / 2 + 120) & (touchX > screen_width / 2 - 120) &
+                        (touchY > screen_height - 500) & (touchY < screen_height - 300)) {
                     //player goes up
                     System.out.println("Command Up");
                     command = Direction.UP;
-                } else if (touchX < screen_width / 2 - 120 & touchX > screen_width / 2 - 360 &
-                        touchY > screen_height - 300 & touchY < screen_height - 100) {
+                } else if ((touchX < screen_width / 2 - 120) & (touchX > screen_width / 2 - 360) &
+                        (touchY > screen_height - 300) & (touchY < screen_height - 100)) {
                     //player goes left
                     System.out.println("Command Left");
                     command = Direction.LEFT;
-                } else if (touchX < screen_width / 2 + 120 & touchX > screen_width / 2 - 120 &
-                        touchY > screen_height - 300 & touchY < screen_height - 100) {
+                } else if ((touchX < screen_width / 2 + 120) & (touchX > screen_width / 2 - 120) &
+                        (touchY > screen_height - 300) & (touchY < screen_height - 100)) {
                     //player goes down
                     System.out.println("Command Down");
                     command = Direction.DOWN;
-                } else if (touchX < screen_width / 2 + 360 & touchX > screen_width / 2 + 120 &
-                        touchY > screen_height - 300 & touchY < screen_height - 100) {
+                } else if ((touchX < screen_width / 2 + 360) & (touchX > screen_width / 2 + 120) &
+                        (touchY > screen_height - 300) & (touchY < screen_height - 100)) {
                     //player goes right
                     System.out.println("Command Right");
                     command = Direction.RIGHT;

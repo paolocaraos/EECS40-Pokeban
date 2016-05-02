@@ -45,6 +45,8 @@ public class Level {
 
         switch (currentLevel) {
             case 0:
+                floor[3][6].setGameObject(box[boxCounter++]);
+                floor[3][7].setIcon(targetIcon[iconCounter++]);
                 floor[3][5].setGameObject(player);
                 for (int i = 0; i < floor.length; i++) {
                     for (int j = 0; j < floor[i].length; j++) {
@@ -53,16 +55,6 @@ public class Level {
                             floor[i][j].setGameObject(wall[wallCounter++]);
                         } else if (j == 0 | j == floor[i].length - 1) {
                             floor[i][j].setGameObject(wall[wallCounter++]);
-                        }
-
-                        if ((i == 1 & j == 1) | (i == floor.length - 2 & j == 1) |
-                                (i == 1 & j == floor[i].length - 2) | (i == floor.length - 2 & j == floor[i].length - 2)) {
-                            floor[i][j].setIcon(targetIcon[iconCounter++]);
-                        }
-
-                        if ((i == 4 & j == 4) | (i == floor.length - 5 & j == 4) |
-                                (i == 4 & j == floor[i].length - 5) | (i == floor.length - 5 & j == floor[i].length - 4)) {
-                            floor[i][j].setGameObject(box[boxCounter++]);
                         }
                     }
 
@@ -128,7 +120,8 @@ public class Level {
 
         if(complete()){
             initiateNextLevel = true;
-            //currentLevel++;
+            currentLevel++;
+            currentLevel = currentLevel % 3;
             deactivateLevel();
 
             System.out.println("Level completed.");
@@ -150,7 +143,16 @@ public class Level {
         for(int i = 0; box[i].verifyActive(); i++)
             box[i].deactivate();
 
+        for(int i = 0; i < wall.length; i++)
+            wall[i].deactivate();
+
         player.deactivate();
+
+        for(int i = 0; i < floor.length; i ++){
+            for( int j = 0; j < floor[i].length; j++ ){
+                floor[i][j].deactivate();
+            }
+        }
     }
 
     boolean movePlayer(PlayerView.Direction direction){
